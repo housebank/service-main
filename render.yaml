@@ -17,7 +17,3 @@ services:
       - key: SERVICE_NAME
         value: user
       - fromGroup: db-vars-for-all
-databases:
-  - name: techbricks
-    databaseName: techbricks # optional (Render may add a suffix)
-    user: techbricks # optional
