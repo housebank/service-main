@@ -2,7 +2,7 @@ services:
   # A Docker web service
   - type: web
     name: service-users
-    env: docker
+    env: node
     repo: https://github.com/house-bank-ng/service-users.git # optional
     region: oregon # optional (defaults to oregon)
     branch: develop # optional (defaults to master)
