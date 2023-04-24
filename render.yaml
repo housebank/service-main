@@ -3,50 +3,22 @@ services:
   - type: web
     name: service-users
     env: docker
-    repo: https://github.com/render-examples/webdis.git # optional
+    repo: https://github.com/house-bank-ng/service-users.git # optional
     region: oregon # optional (defaults to oregon)
     plan: standard # optional (defaults to starter instance type)
-    branch: master # optional (defaults to master)
-    rootDir: webdis
-    dockerCommand: ./webdis.sh # optional (defaults to Dockerfile command)
-    numInstances: 3 # optional (defaults to 1)
-    healthCheckPath: /
+    branch: develop # optional (defaults to master)
+    rootDir: service-users
+    numInstances: 1 # optional (defaults to 1)
+    healthCheckPath: /v1/health
     envVars:
-      - key: REDIS_HOST
-        fromService:
-          type: redis
-          name: lightning
-          property: host # available properties are listed below
-      - key: REDIS_PORT
-        fromService:
-          type: redis
-          name: lightning
-          property: port
-      - fromGroup: conc-settings
+      - key: PORT
+        value: 8002
+      - key: VERSION
+        value: 0.0.1
+      - key: SERVICE_NAME
+        value: user
+      - fromGroup: DB_VERS
 databases:
-  - name: elephant
-    databaseName: mydb # optional (Render may add a suffix)
-    user: adrian # optional
-    ipAllowList: # optional (defaults to allow all)
-      - source: 203.0.113.4/30
-        description: office
-      - source: 198.51.100.1
-        description: home
-
-  - name: private database
-    databaseName: private
-    ipAllowList: [] # only allow internal connections
-
-envVarGroups:
-  - name: conc-settings
-    envVars:
-      - key: CONCURRENCY
-        value: 2
-      - key: SECRET
-        generateValue: true
-      - key: USER_PROVIDED_SECRET
-        sync: false
-  - name: stripe
-    envVars:
-      - key: STRIPE_API_URL
-        value: https://api.stripe.com/v2
+  - name: techbricks
+    databaseName: techbricks # optional (Render may add a suffix)
+    user: techbricks # optional
