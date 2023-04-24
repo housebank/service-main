@@ -6,7 +6,7 @@ services:
     repo: https://github.com/house-bank-ng/service-users.git # optional
     region: oregon # optional (defaults to oregon)
     branch: develop # optional (defaults to master)
-    rootDir: build
+    rootDir: app
     numInstances: 1 # optional (defaults to 1)
     healthCheckPath: /v1/health
     envVars:
