@@ -5,7 +5,6 @@ services:
     env: docker
     repo: https://github.com/house-bank-ng/service-users.git # optional
     region: oregon # optional (defaults to oregon)
-    plan: standard # optional (defaults to starter instance type)
     branch: develop # optional (defaults to master)
     rootDir: service-users
     numInstances: 1 # optional (defaults to 1)
