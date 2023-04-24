@@ -17,7 +17,7 @@ services:
         value: 0.0.1
       - key: SERVICE_NAME
         value: user
-      - fromGroup: DB_VERS
+      - fromGroup: db_vers
 databases:
   - name: techbricks
     databaseName: techbricks # optional (Render may add a suffix)
