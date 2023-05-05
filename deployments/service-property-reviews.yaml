@@ -1,0 +1,70 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: property-reviews-endpoint-deployment
+  labels:
+    app: property-reviews-endpoint
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: property-reviews-endpoint
+  template:
+    metadata:
+      name: property-reviews-endpoint
+      labels:
+        app: property-reviews-endpoint
+    spec:
+      containers:
+        - name: service-property-reviews-v1
+          image: ollidevs/service-property-reviews:latest
+          imagePullPolicy: "Always"
+          ports:
+            - containerPort: 8005
+          env:
+            - name: DB_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: house-bank-config
+                  key: DB_HOST
+            - name: PORT
+              value: "8005"
+            - name: SERVICE_NAME
+              value: "property-review"
+            - name: DB_USER
+              valueFrom:
+                configMapKeyRef:
+                  name: house-bank-config
+                  key: DB_USER
+            - name: DB_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: house-bank-config
+                  key: DB_NAME
+            - name: DB_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: house-bank-config
+                  key: DB_PORT
+            - name: DB_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: house-bank-secrets
+                  key: POSTGRES_PASSWORD
+      restartPolicy: Always
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: property-reviews-endpoint-service # Sets service name
+  labels:
+    app: property-reviews-endpoint # Labels and Selectors
+spec:
+  type: NodePort
+  ports:
+      - protocol: TCP
+        port: 8005
+        targetPort: 8005
+  selector:
+    app: property-reviews-endpoint

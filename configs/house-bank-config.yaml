@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: house-bank-config
+  labels:
+    app: house-bank
+data:
+  # property-like keys; each key maps to a simple value
+  POSTGRES_DB: "techbricks"
+  POSTGRES_USER: "postgres"
+  DB_HOST: "postgres-service"
+  DB_USER: "postgres"
+  DB_NAME: "techbricks"
+  DB_PORT: "5432"
