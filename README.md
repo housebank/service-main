@@ -1,5 +1,5 @@
-# service-properties
-Techbricks  properties CRUD service 
+# House bank backend services
+Here you will find deployment resources to deploy each backend service together as a microservice using kubernetes
 
 
 ## Version
@@ -7,65 +7,60 @@ Techbricks  properties CRUD service
 
 ## Demo
 
-[Demo](https://packages-trotter-wmdfs7yiwa-lz.a.run.app/)
+[Demo](https://localhost.com/)
 
 ## Getting started
-
+This documentation is a guide to set up the backend services locally on your machine for development and testing purposes.
 Clone the project:
 
 ```
-
+https://github.com/housebank/service-main.git
 ```
 
-Install dependencies:
+Dependencies:
 ```
-cd service-properties && yarn install
+minikube
+hyperkit or podman or docker
 ```
 
 ## Get it up and running
 
-In production
+The services have been built and pushed to docker hub, the config files are refrencing and pulling the images from docker to build up the resources that kubernetes requires to deploy a complete microservice.
+You may set up your minikube cluster and run the deployment files contained in this repo. You may also use the "deploy-dev.sh" script, this script is meant to set up the entire environment if it successfully runs.
 ```
-yarn start
-```
-
-In development
-```
-yarn dev
+./deploy-dev.sh
 ```
 
-The default port is 8002 so navigate to localhost:8002
+The domain to test from is as written below: Note: this only works if you have deployed using the deploy script
+```
+http://house-bank.test/
+```
 
-## API
+## LIST OF SERVICES
 
-GET : Returns an array of all properties
+USER : Endpoint for App users
 ```
-/v1/properties
+/usr/v1/user
 ```
-POST: Returns an array of object of the id of new property(ies) added, accepts an array of 
-property(ies) to be created
+PROPERTY: Properties endpoint
 ```
-/v1/properties
+/prp/v1/property
 ```
-GET: Returns an array of object of the property requested
+TRANSACTION: Transactions endpoint
 ```
-/v1/properties/:id
+/txn/v1/transaction
 ```
-PATCH: Returns an array of object of the id of the property updated, accepts an object of
-property to be updated
+PROPERTY-REVIEWS: Property-reviews endpoint
 ```
-/v1/properties/:id
+/prw/v1/property-review
 ```
-DELETE: Returns an array of object of the id of the property deleted
-```
-/v1/properties/:id
-```
+ ..... More to come soon ....
 
 
 ## Testing
 
 
-Latest coverage report. 03.02.2023
+Latest coverage report. 03.02.1900
 ```
 ------------------|---------|----------|---------|---------|-------------------
 File              | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s
